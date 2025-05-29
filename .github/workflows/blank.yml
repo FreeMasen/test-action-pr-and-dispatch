@@ -24,7 +24,7 @@ jobs:
         run: |
           echo 'github: {{ toJSON(github) }}'
       - name: Job 1
-        if: '{{ github.event.push || github.event.inputs.run_job1 }}'
+        if: ${{ github.event.push || github.event.inputs.run_job1 }}
         run: echo JOB1!!!
 
       # Runs a set of commands using the runners shell
