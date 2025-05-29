@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      run_job1:
+        description: Run Job 1
+        type: boolean
+        default: false
+      run_job2:
+        description: Run Job 2
+        type: boolean
+        default: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: dump-info
+        run: |
+          echo 'github: {{ toJSON(github) }}'
+      - name: Job 1
+        if: '{{ github.event.push || github.event.inputs.run_job1 }}'
+        run: echo JOB1!!!
+
+      # Runs a set of commands using the runners shell
+      - name: Job 2
+        if: '{{ github.event.push || github.event.inputs.run_job2 }}'
+        run: echo JOB2!!!
