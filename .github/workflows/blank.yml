@@ -23,9 +23,9 @@ jobs:
       - name: dump-info
         run: |
           echo 'github: ${{ toJSON(github) }}'
-          echo 'push: "${{ github.event.push }}"'
-          echo 'job1: "${{ github.event.inputs.run_job1 }}"'
-          echo 'job2: "${{ github.event.inputs.run_job2 }}"'
+          echo 'push: "${{ github.event.push ? 'true' : 'false' }}"'
+          echo 'job1: "${{ github.event.inputs.run_job1 ? 'true' : 'false' }}"'
+          echo 'job2: "${{ github.event.inputs.run_job2 ? 'true' : 'false' }}"'
       - name: Job 1
         if: ${{ github.event.push || github.event.inputs.run_job1 }}
         run: echo JOB1!!!
