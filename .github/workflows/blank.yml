@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: dump-info
         run: |
-          echo 'github: {{ toJSON(github) }}'
+          echo 'github: ${{ toJSON(github) }}'
       - name: Job 1
         if: ${{ github.event.push || github.event.inputs.run_job1 }}
         run: echo JOB1!!!
