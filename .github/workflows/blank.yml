@@ -25,13 +25,15 @@ jobs:
           echo 'inputs: ${{ toJSON(inputs) }}'
           echo 'github: ${{ toJSON(github) }}'
           echo 'push: "${{ (github.event.pusher && 'true') || 'false' }}"'
-          echo 'job1: "${{ (github.event.inputs.run_job1) && 'true' || 'false' }}"'
-          echo 'job2: "${{ (github.event.inputs.run_job2) && 'true' || 'false' }}"'
+          echo 'gjob1: "${{ (github.event.inputs.run_job1) && 'true' || 'false' }}"'
+          echo 'gjob2: "${{ (github.event.inputs.run_job2) && 'true' || 'false' }}"'
+          echo 'ijob1: "${{ (inputs.run_job1) && 'true' || 'false' }}"'
+          echo 'ijob2: "${{ (inputs.run_job2) && 'true' || 'false' }}"'
       - name: Job 1
-        if: ${{ github.event.pusher || github.event.inputs.run_job1 }}
+        if: ${{ github.event.pusher || inputs.run_job1 }}
         run: echo JOB1!!!
 
       # Runs a set of commands using the runners shell
       - name: Job 2
-        if: ${{ github.event.pusher || github.event.inputs.run_job2 }}
+        if: ${{ github.event.pusher || inputs.run_job2 }}
         run: echo JOB2!!!
