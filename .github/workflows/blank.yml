@@ -29,6 +29,7 @@ jobs:
           echo 'gjob2: "${{ (github.event.inputs.run_job2) && 'true' || 'false' }}"'
           echo 'ijob1: "${{ (inputs.run_job1) && 'true' || 'false' }}"'
           echo 'ijob2: "${{ (inputs.run_job2) && 'true' || 'false' }}"'
+          echo 'merged: "${{ github.event.pull_request.merged }}"'
       - name: Job 1
         if: ${{ github.event.pusher || inputs.run_job1 }}
         run: echo JOB1!!!
