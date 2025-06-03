@@ -46,6 +46,7 @@ jobs:
       - name: merge Job
         if: ${{ github.evnet.pull_request.merged }}
         run: echo puhser!!!
+      - uses: actions/checkout@latest
       - name: check for changes
         id: check-for-changes
         uses: tj-actions/changed-files@v46.0.5
