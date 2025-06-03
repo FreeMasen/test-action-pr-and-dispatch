@@ -46,3 +46,17 @@ jobs:
       - name: merge Job
         if: ${{ github.evnet.pull_request.merged }}
         run: echo puhser!!!
+      - uses: actions/checkout@v3
+      - name: check for changes
+        id: check-for-changes
+        uses: tj-actions/changed-files@v46.0.5
+        with:
+          files_yaml: |
+            .github/**
+      - name: dump changes
+        if: steps.changed-files-yaml.outputs.doc_any_changed == 'true'
+        env:
+          DOC_ALL_CHANGED_FILES: ${{ steps.changed-files-yaml.outputs.doc_all_changed_files }}
+        run: |
+          echo "One or more workflow file(s) has changed."
+          echo "List all the files that have changed: $DOC_ALL_CHANGED_FILES"
