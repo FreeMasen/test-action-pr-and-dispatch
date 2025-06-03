@@ -51,6 +51,7 @@ jobs:
         id: check-for-changes
         uses: tj-actions/changed-files@v46.0.5
         with:
+          since_last_remote_commit: true 
           files_yaml: |
             .github/**
       - name: dump changes
@@ -60,3 +61,4 @@ jobs:
         run: |
           echo "One or more workflow file(s) has changed."
           echo "List all the files that have changed: $DOC_ALL_CHANGED_FILES"
+        
